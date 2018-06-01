@@ -1,0 +1,30 @@
+How to create R Studio in AWS:
+
+In case you need more computing power than your computer has, you can open an EC2 instance on AWS and use cloud computing.
+
+The first step is creating a VPC. To do this, go to VPC in AWS and use the first template.
+
+In the template, use the default settings, except name your VPC so you know which one to use.
+
+Next, launch and EC2 instance using the free T2.micro setting, unless you want more power. 
+
+Click on Advanced Details and paste this code:
+#!/bin/bash
+# install R
+yum install -y R
+# install RStudio-Server
+wget https://download2.rstudio.org/rstudio-rhel-0.99.903-x86_64.rpm
+yum install -y --nogpgcheck rstudio-server-rhel-0.99.903-x86_64.rpm
+yum install -y curl-devel
+# add user
+useradd manuel
+echo manuel:testing | chpasswd
+In "Security Groups" click on edit. One will pop up automatically, change the source to "anywhere" then click "Add rule."
+
+Your second rule will be a Custom TCP, but open port 8787 and chance the source to Anywhere again.
+
+Review and launch. 
+
+Then a pop-up will appear asking for Key Pairs. If you already created them, choose the existing pair. If not, create a new key pair.
+
+Launch your instance. It will take a few minutes to finish setting up, but once it does, click on it, copy and paste the Public IP address into your web browser an voila. You're now connected to RStudio.
