@@ -1,0 +1,19 @@
+This R project is from DataCamp and learning whether Zack Greinke's pitch velocity differed over the course of a month
+
+# Print the first 6 rows of the data
+head(greinke)
+
+# Print the number of rows in the data frame
+nrow(greinke)
+
+# Summarize the start_speed variable
+summary(greinke$start_speed)
+
+# Get rid of data without start_speed
+greinke <- subset(greinke, !is.na(start_speed))
+
+# Print the number of complete entries
+nrow(greinke)
+
+# Print the structure of greinke
+str(greinke)
